@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/js.js"></script>
+    
+</head>
+<h1>Preview Image</h1>
+<form action="/upload" method="post" enctype="multipart/form-data">
+ <div class="form-group">
+  <input type="file" name="image" class="form-control" id="uploadFile" placeholder="No file Choosen" onchange="getImagePreview(event)">
+</div>
+<div id="preview"></div>
+  <div class="form-group"><input type="submit" name="Submit"></div>
+  
+</form>
+<script>
+  // function getImagePreview(evnet)
+  // {
+  //   console.log(event.target.files[0]);
+  // }
+  function getImagePreview(event)
+  {
+    console.log(event.target.files[0]);
+    var image=URL.createObjectURL(event.target.files[0]);
+    var imagediv= document.getElementById('preview');
+    var newimg=document.createElement('img');
+    imagediv.innerHTML='';
+    newimg.src=image;
+    newimg.width="200";
+    imagediv.appendChild(newimg);
+  }
+</script>
+</html>
