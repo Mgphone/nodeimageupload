@@ -3,18 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="/js/js.js"></script>
+    <!-- <script src="/js/js.js"></script> -->
+    
     
 </head>
 <h1>Preview Image</h1>
-<form action="/upload" method="post" enctype="multipart/form-data">
+<form action="/image/upload" method="post" enctype="multipart/form-data">
  <div class="form-group">
-  <input type="file" name="image" class="form-control" id="uploadFile" placeholder="No file Choosen" onchange="getImagePreview(event)">
+  <input:label>Enter Name</input:label>
+  <input type="text" name="name" placeholder="Name" id="" ><br />
+  <input type="file" name="image" accept="image/*" class="form-control" id="uploadFile" placeholder="No file Choosen" onchange="getImagePreview(event)">
 </div>
 <div id="preview"></div>
-  <div class="form-group"><input type="submit" name="Submit"></div>
+  <div class="form-group"><button> Submit</button></div>
   
 </form>
+<hr>
+<h1>File from our database</h1>
+<% if (users.length<0) { %>
+<h1>There is no picture on database</h1>
+
+<% } else { %>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach((user)=>{%>
+      <tr id="<%= user._id %>"></tr>
+      <td><%= user.name %></td>
+      <td><img src="<%= user.imageUrl %>" width="200" height="200" /></td>
+      <td><a href="#">Delete</a></td>
+    <%}) %>
+  </tbody>
+</table>
+  <% } %>
+ 
+ 
 <script>
   // function getImagePreview(evnet)
   // {
